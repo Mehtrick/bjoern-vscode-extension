@@ -1,0 +1,12 @@
+{
+	"Print to console": {
+		"prefix": "Scenario",
+		"body": [
+			"Scenario: ",
+			"      Given:",
+			"      When:",
+			"      Then:"
+		],
+		"description": "Erstelle ein neues Scenario"
+	}
+}
