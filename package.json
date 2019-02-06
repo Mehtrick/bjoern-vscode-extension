@@ -1,7 +1,7 @@
 {
 	"name": "bjoern",
 	"displayName": "Bjoern",
-	"publisher": "Mehtrick",
+	"publisher": "mehtrick",
 	"description": "Language support for the bjoern-tc-specification Framework",
 	"version": "0.2.0",
 	"engines": {
