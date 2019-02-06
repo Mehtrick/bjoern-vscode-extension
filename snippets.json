@@ -1,12 +1,33 @@
 {
-	"Print to console": {
-		"prefix": "Scenario",
+	"New Bjoern Scenario": {
+		"prefix": "init Scenario",
 		"body": [
-			"Scenario: ",
-			"      Given:",
-			"      When:",
-			"      Then:"
+			"- Scenario: ",
+			"    Given:",
+			"      - ",
+			"    When:",
+			"      - ",
+			"    Then:",
+			"      - "
 		],
-		"description": "Erstelle ein neues Scenario"
+		"description": "Erstelle ein neues Bjoern Scenario"
+	},
+	"Init Bjoern Feature":{
+		"prefix": "init Feature",
+		"body": [
+			"Feature: ",
+			"Background:",
+			"  Given:",
+			"    - ",
+			"Scenarios:",
+			"  - Scenario: ",
+			"    Given:",
+			"      - ",
+			"    When:",
+			"      - ",
+			"    Then:",
+			"      - "
+		],
+		"description": "Erstelle ein neues Feature mit einem Background und einem Scenario"
 	}
 }

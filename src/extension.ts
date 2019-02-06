@@ -5,12 +5,12 @@ import * as vscode from 'vscode';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	context.subscriptions.push(vscode.languages.registerCompletionItemProvider('*', {
+	context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ language: 'bjoern' }, {
 		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken) {
-			let completionWords= ["Scenario","Scenarios","Feature","Given","When","Then"];
+			let completionWords= ["- Scenario: ","Scenarios:\n  - Scenario: ","Feature: ","Given:\n  - ","When:\n  - ","Then:\n  - "];
 			var items:vscode.CompletionItem[] = [];
 			completionWords.forEach(element => {
-				items.push(new vscode.CompletionItem(element+": "));
+				items.push(new vscode.CompletionItem(element));
 			});
 			return items;
 		}
