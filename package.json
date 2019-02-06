@@ -1,9 +1,9 @@
 {
 	"name": "bjoern",
 	"displayName": "Bjoern",
-	"publisher":"Mehtrick",
+	"publisher": "Mehtrick",
 	"description": "Language support for the bjoern-tc-specification Framework",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
@@ -22,25 +22,25 @@
 			}
 		],
 		"languages": [
-            {
-                "id": "bjoern",
-                "aliases": [
-                    "Bjoern",
-                    "bjoern"
-                ],
-                "extensions": [
-                    ".zgr"
-                ],
-                "configuration": "./language-configuration.json"
-            }
-        ],
-        "grammars": [
-            {
-                "language": "bjoern",
-                "scopeName": "source.zgr",
-                "path": "./syntaxes/bjoern.tmLanguage.json"
-            }
-        ]
+			{
+				"id": "bjoern",
+				"aliases": [
+					"Bjoern",
+					"bjoern"
+				],
+				"extensions": [
+					".zgr"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "bjoern",
+				"scopeName": "source.zgr",
+				"path": "./syntaxes/bjoern.tmLanguage.json"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
