@@ -3,7 +3,7 @@
 	"displayName": "Bjoern",
 	"publisher": "mehtrick",
 	"description": "Language support for the bjoern-tc-specification Framework",
-	"version": "0.7.0",
+	"version": "0.7.1",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
