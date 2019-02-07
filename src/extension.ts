@@ -5,17 +5,38 @@ import * as vscode from 'vscode';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ language: 'bjoern' }, {
-		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken) {
-			let completionWords= ["- Scenario: ","Scenarios:\n  - Scenario: ","Feature: ","Given:\n  - ","When:\n  - ","Then:\n  - "];
-			var items:vscode.CompletionItem[] = [];
-			completionWords.forEach(element => {
-				items.push(new vscode.CompletionItem(element));
-			});
-			return items;
-		}
-		}));
+	var completionProvider:BjoernCompletionProvider = new BjoernCompletionProvider();
+	
+	let registerComplietionProvider = vscode.languages.registerCompletionItemProvider({ language: 'bjoern' }, completionProvider);
+	context.subscriptions.push(registerComplietionProvider);
 	}
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
+
+
+export class BjoernCompletionProvider implements vscode.CompletionItemProvider{
+	initialWords:string[]= ["- Scenario: ","Scenarios:\n  - Scenario: ","Feature: ","Given:\n  - ","When:\n  - ","Then:\n  - "];
+
+	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken){
+		var items:vscode.CompletionItem[] = [];
+		this.initialWords.forEach(element => {
+			items.push(new vscode.CompletionItem(element));
+		});
+		var statements:Set<string>=this.parseStatements(document);
+		statements.forEach(element=> {
+			items.push(new vscode.CompletionItem(element.trim()));
+		});
+		return items;
+	}
+
+	parseStatements(document: vscode.TextDocument){
+		var documentLines:string[] = document.getText().replace(" ","").replace(/"(.*?)"/g,"\"\"").split("\n").filter(this.filterStatement);
+		return new Set(documentLines);
+	}
+
+	filterStatement(element:string){
+		return element.indexOf("-")>0 && !element.includes("Scenario");
+	}
+
+}

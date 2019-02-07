@@ -40,7 +40,14 @@
 				"scopeName": "source.zgr",
 				"path": "./syntaxes/bjoern.tmLanguage.json"
 			}
-		]
+		],
+		"configurationDefaults": {
+			"[bjoern]": {
+				"editor.insertSpaces": true,
+				"editor.tabSize": 2,
+				"editor.autoIndent": false
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
