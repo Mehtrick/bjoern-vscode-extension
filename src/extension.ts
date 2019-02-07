@@ -21,17 +21,17 @@ export class BjoernCompletionProvider implements vscode.CompletionItemProvider{
 	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken){
 		var items:vscode.CompletionItem[] = [];
 		this.initialWords.forEach(element => {
-			items.push(new vscode.CompletionItem(element));
+			items.push(new vscode.CompletionItem(element,vscode.CompletionItemKind.Method));
 		});
 		var statements:Set<string>=this.parseStatements(document);
 		statements.forEach(element=> {
-			items.push(new vscode.CompletionItem(element.trim()));
+			items.push(new vscode.CompletionItem(element,vscode.CompletionItemKind.Text));
 		});
 		return items;
 	}
 
 	parseStatements(document: vscode.TextDocument){
-		var documentLines:string[] = document.getText().replace(" ","").replace(/"(.*?)"/g,"\"\"").split("\n").filter(this.filterStatement);
+		var documentLines:string[] = document.getText().replace(" ","").replace(/"(.*?)"/g,"\"\"").split("\n").filter(this.filterStatement).map(s => s.trim());
 		return new Set(documentLines);
 	}
 
