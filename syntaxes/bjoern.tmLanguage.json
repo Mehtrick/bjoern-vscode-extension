@@ -7,14 +7,27 @@
 		},
 		{
 			"include": "#strings"
+		},
+		{
+			"include": "#comment"
 		}
 	],
 	"repository": {
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.bjoern",
-				"match": "\\b(Feature|Scenario|Scenarios|Given|When|Then|Background)\\b"
-			}]
+			"patterns": [
+				{
+					"name": "keyword.control.bjoern",
+					"match": "\\b(Feature|Scenarios|Background)\\b"
+				},
+				{
+					"name": "entity.other.attribute-name.bjoern",
+					"match": "\\b(Given|When|Then)\\b"
+				},
+				{
+					"name": "entity.name.tag.bjoern",
+					"match": "\\b(Scenario)\\b"
+				}
+			]
 		},
 		"strings": {
 			"name": "string.quoted.double.bjoern",
@@ -24,6 +37,27 @@
 				{
 					"name": "constant.character.escape.bjoern",
 					"match": "\\\\."
+				}
+			]
+		},
+		"comment": {
+			"begin": "(?:(^[ \\t]*)|[ \\t]+)(?=#\\p{Print}*$)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.whitespace.comment.leading.bjoern"
+				}
+			},
+			"end": "(?!\\G)",
+			"patterns": [
+				{
+					"begin": "#",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.bjoern"
+						}
+					},
+					"end": "\\n",
+					"name": "comment.line.number-sign.bjoern"
 				}
 			]
 		}
