@@ -6,7 +6,7 @@
 			"include": "#keywords"
 		},
 		{
-			"include": "#strings"
+			"include": "#parameter"
 		},
 		{
 			"include": "#comment"
@@ -29,7 +29,7 @@
 				}
 			]
 		},
-		"strings": {
+		"parameter": {
 			"name": "string.quoted.double.bjoern",
 			"begin": "\"",
 			"end": "\"",
