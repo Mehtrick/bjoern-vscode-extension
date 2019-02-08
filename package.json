@@ -3,7 +3,7 @@
 	"displayName": "Bjoern",
 	"publisher": "mehtrick",
 	"description": "Language support for the bjoern-tc-specification Framework",
-	"version": "0.7.1",
+	"version": "0.7.2",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
@@ -67,7 +67,7 @@
 		"type": "git",
 		"url": "https://github.com/Mehtrick/bjoern.git"
 	},
-	"icon":"assets/logo.png",
+	"icon": "assets/logo.png",
 	"galleryBanner": {
 		"color": "#2B4251",
 		"theme": "dark"
