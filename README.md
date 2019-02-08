@@ -4,7 +4,7 @@
 
 - Syntax highlighting for the keywords of the bjoern-framework
 - Autocompletion for statements
-- Documenthighliting
+- Document Highlighting
 
 ## Requirements
 
