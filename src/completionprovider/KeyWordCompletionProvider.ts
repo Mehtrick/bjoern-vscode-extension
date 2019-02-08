@@ -4,6 +4,7 @@ export class KeyWordCompletionProvider implements vscode.CompletionItemProvider 
 	initialWords: string[] = [
 		"- Scenario: ",
 		"Scenarios:\n  - Scenario: ",
+		"Background:",
 		"Feature: ",
 		"Given:\n  - ",
 		"When:\n  - ",
