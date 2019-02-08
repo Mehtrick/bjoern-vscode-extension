@@ -1,12 +1,11 @@
 # Bjoern VS-Code Plugin
 
-
 ## Features
-Language Support for the bjoern tc spec
+
+- Syntax highlighting for the keywords of the bjoern-framework
+- Autocompletion for statements
+- Documenthighliting
 
 ## Requirements
 
-Have a look at the [github repo](https://github.com/Mehtrick/bjoern)
-
-## Known Issues
-- many
+To use the full power of the bjoern-framework have a look at the [github repo](https://github.com/Mehtrick/bjoern) where you will find the code-generator which will generate java-code and documentations from your bjoern files.

@@ -8,7 +8,7 @@
 		"vscode": "^1.30.0"
 	},
 	"categories": [
-		"Languages"
+		"Programming Languages"
 	],
 	"activationEvents": [
 		"onLanguage:bjoern"
@@ -67,5 +67,9 @@
 		"type": "git",
 		"url": "https://github.com/Mehtrick/bjoern.git"
 	},
-	"icon":"assets/logo.png"
+	"icon":"assets/logo.png",
+	"galleryBanner": {
+		"color": "#2B4251",
+		"theme": "dark"
+	}
 }
