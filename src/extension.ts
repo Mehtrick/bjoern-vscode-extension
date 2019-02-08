@@ -13,8 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
   var keyWordCompletionProvider = vscode.languages.registerCompletionItemProvider(
     { language: "bjoern" },
-    new BjoernCompletionProvider(),
-    "-"
+    new BjoernCompletionProvider()
   );
   context.subscriptions.push(completionProvider, keyWordCompletionProvider);
 }
