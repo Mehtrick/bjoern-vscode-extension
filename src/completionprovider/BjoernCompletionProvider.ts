@@ -72,9 +72,9 @@ export class BDDStatement {
 export class KeywordSectionFinder {
   getKeywordSection(document: vscode.TextDocument, position: vscode.Position): BDD {
     let text = document.getText(new vscode.Range(new vscode.Position(0, 0), position));
-    let givenIndex = text.lastIndexOf("Given")
-    let whenIndex = text.lastIndexOf("When")
-    let thenIndex = text.lastIndexOf("Then")
+    let givenIndex = text.lastIndexOf("Given");
+    let whenIndex = text.lastIndexOf("When");
+    let thenIndex = text.lastIndexOf("Then");
 
     var highestIndex = Math.max(givenIndex, whenIndex, thenIndex);
     switch (highestIndex) {
