@@ -47,7 +47,7 @@
 			"[bjoern]": {
 				"editor.insertSpaces": true,
 				"editor.tabSize": 2,
-				"editor.autoIndent": true
+				"editor.autoIndent": false
 			}
 		}
 	},
