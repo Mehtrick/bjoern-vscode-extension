@@ -3,7 +3,7 @@
 	"displayName": "Bjoern",
 	"publisher": "mehtrick",
 	"description": "Language support for the bjoern-tc-specification Framework",
-	"version": "0.7.6",
+	"version": "0.7.7",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
@@ -47,7 +47,7 @@
 			"[bjoern]": {
 				"editor.insertSpaces": true,
 				"editor.tabSize": 2,
-				"editor.autoIndent": true
+				"editor.autoIndent": false
 			}
 		}
 	},
