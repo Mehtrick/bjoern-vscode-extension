@@ -12,9 +12,11 @@ export class KeyWordCompletionProvider implements vscode.CompletionItemProvider 
 	];
 	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken) {
 		var items: vscode.CompletionItem[] = [];
-		this.initialWords.forEach(element => {
-			items.push(new vscode.CompletionItem(element, vscode.CompletionItemKind.Method));
-		});
+		if(document.lineAt(position.line).isEmptyOrWhitespace){
+			this.initialWords.forEach(element => {
+				items.push(new vscode.CompletionItem(element, vscode.CompletionItemKind.Method));
+			});
+		}
 		return items;
 	}
 }
