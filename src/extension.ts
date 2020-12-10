@@ -4,7 +4,10 @@ import * as vscode from "vscode";
 import { BjoernCompletionProvider } from "./completionprovider/BjoernCompletionProvider";
 import { KeyWordCompletionProvider } from "./completionprovider/KeyWordCompletionProvider";
 import { BjoernHighlightProvider } from "./highlightprovider/BjoernHighlightProvider";
-import { BjoernDiagnosticsProvider } from "./BjoernDiagnosticsProvider";
+import { BjoernDiagnosticsProvider, Line } from "./BjoernDiagnosticsProvider";
+import { BjoernKeywords } from "./BjoernKeywords";
+import { BjoernKeywordsIndentation } from "./BjoernKeywordsIndentation";
+import { BjoernCodeFormatter } from "./formatter/BjoernCodeFormatter";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -28,14 +31,21 @@ export function activate(context: vscode.ExtensionContext) {
   );
   var diagnosticCollection = vscode.languages.createDiagnosticCollection('bjoern');
 
+  // 👍 formatter implemented using API
+  var codeFormatter = vscode.languages.registerDocumentFormattingEditProvider('bjoern',
+    new BjoernCodeFormatter()
+  );
+
   if (vscode.window.activeTextEditor) {
-     new BjoernDiagnosticsProvider().updateDiagnostics(vscode.window.activeTextEditor.document, diagnosticCollection);
+    new BjoernDiagnosticsProvider().updateDiagnostics(vscode.window.activeTextEditor.document, diagnosticCollection);
   }
-  context.subscriptions.push(bjoernCompletionProvider, keyWordCompletionProvider, bjoernHighlightProvider);
+  context.subscriptions.push(bjoernCompletionProvider, keyWordCompletionProvider, bjoernHighlightProvider, codeFormatter);
   context.subscriptions.push(vscode.workspace.onDidChangeTextDocument(event => {
     new BjoernDiagnosticsProvider().updateDiagnostics(event.document, diagnosticCollection)
   }
   ));
+
+
 }
 
 // this method is called when your extension is deactivated

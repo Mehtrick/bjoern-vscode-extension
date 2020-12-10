@@ -1,5 +1,7 @@
 import * as vscode from "vscode";
 import { BjoernKeywords } from "./BjoernKeywords";
+import { BjoernKeywordsIndentation } from "./BjoernKeywordsIndentation";
+import { BDDStatement } from "./completionprovider/BjoernCompletionProvider";
 
 
 export class BjoernDiagnosticsProvider {
@@ -61,14 +63,19 @@ export class BjoernDiagnosticsProvider {
   }
 
   checkIndentationForFeatureBackgroundScenariosScenario(document: vscode.TextDocument, diagnostics: vscode.Diagnostic[]) {
-    var noWhitespaceIndentation = [BjoernKeywords.Feature, BjoernKeywords.Scenarios, BjoernKeywords.Background];
-    var twoWhitespaceIndentation = [BjoernKeywords.Scenario];
+    var scenarios_recognized = false;
     var keywordLines: Line[] = document.getText().split("\n").map((l, index) => new Line(index, l)).filter(l => !l.text.startsWith("#") && !isBlank(l.text));
     keywordLines.forEach(element => {
-      if (noWhitespaceIndentation.find(keyword => element.text.startsWith(keyword.toString()))) {
-        this.checkIndentationOfLine(0, document, element, diagnostics);
-      } else if (twoWhitespaceIndentation.find(keyword => element.text.startsWith(keyword.toString()))) {
-        this.checkIndentationOfLine(2, document, element, diagnostics);
+      if(element.text.startsWith(BjoernKeywords.Scenarios.toString())){
+        scenarios_recognized = true;
+      }
+      var foundKeyword = BjoernKeywordsIndentation.AllValues.find(keyword => element.text.startsWith(keyword.bjoenKeyword.toString()))
+      if(foundKeyword){
+        if(scenarios_recognized){
+          this.checkIndentationOfLine(foundKeyword.indentationInScenarios, document, element, diagnostics);
+        }else{
+          this.checkIndentationOfLine(foundKeyword.indentation, document, element, diagnostics);
+        }
       }
     });
   }
@@ -112,7 +119,7 @@ export class BjoernDiagnosticsProvider {
   }
 
   checkSingleKeyword(keyword: Line, document: vscode.TextDocument, diagnostics: vscode.Diagnostic[]) {
-    var keywords: string[] = [BjoernKeywords.Feature.toString(), "Given", "When", "Then", BjoernKeywords.Background.toString(), BjoernKeywords.Scenarios.toString()];
+    var keywords: string[] = [BjoernKeywords.Feature.toString(),BjoernKeywords.Given.toString(),BjoernKeywords.When.toString(), BjoernKeywords.Then.toString(), BjoernKeywords.Background.toString(), BjoernKeywords.Scenarios.toString()];
     if (!keywords.find(element => keyword.text.startsWith(element))) {
       var documentLine = document.lineAt(keyword.lineNumber);
       var startIndex = documentLine.firstNonWhitespaceCharacterIndex;
