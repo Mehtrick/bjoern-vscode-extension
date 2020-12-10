@@ -30,11 +30,8 @@ export class BjoernCodeFormatter implements vscode.DocumentFormattingEditProvide
 
 
     checkIfLineStartsWithKeyword(line: Line): boolean {
-        return Object.values(BjoernKeywords).some(keyword => {
-            if (line.text.startsWith(keyword.toString())) {
-                return true
-            }
-        })
+        return Object.values(BjoernKeywords).some(keyword =>
+            line.text.startsWith(keyword.toString()))
     }
 
     correctIndentation(indentaionGoal: number, element: Line, document: vscode.TextDocument, textEdits: vscode.TextEdit[]) {
@@ -42,7 +39,7 @@ export class BjoernCodeFormatter implements vscode.DocumentFormattingEditProvide
             var beginPosition = new vscode.Position(element.lineNumber, 0);
             var numberOfWhitespaces = document.lineAt(element.lineNumber).firstNonWhitespaceCharacterIndex;
             if (numberOfWhitespaces < indentaionGoal) {
-                var missingWhiteSpaceCount = indentaionGoal - numberOfWhitespaces+1
+                var missingWhiteSpaceCount = indentaionGoal - numberOfWhitespaces + 1
                 var missingWhiteSpaces = Array(missingWhiteSpaceCount).join(" ")
                 textEdits.push(vscode.TextEdit.insert(beginPosition, missingWhiteSpaces));
             } else {
